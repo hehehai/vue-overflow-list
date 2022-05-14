@@ -6,6 +6,7 @@ export default defineComponent({
 
 <script setup lang="ts">
 const items: string[] = ['category', 'campsite', 'bicycle', 'bus', 'cloudy', 'cube', 'departure']
+const bigItems: string[] = Array.from({ length: 200 }, (_, i) => i.toString())
 
 const collapseSize = ref(400)
 
@@ -24,6 +25,9 @@ const collapseSizeWidth = computed(() => `${collapseSize.value}px`)
   </div>
   <div class="box collapse-wrapper mt-5">
     <CollapseList :items="items" />
+  </div>
+  <div class="box collapse-wrapper mt-5">
+    <CollapseList :items="bigItems" />
   </div>
 </template>
 

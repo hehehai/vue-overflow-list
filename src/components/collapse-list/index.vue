@@ -93,6 +93,7 @@ function handleRepartition(growing: boolean) {
 }
 
 const onResize = (entries: ResizeObserverEntry[]) => {
+  // TODO: 需要防抖
   const growing = entries.some((entry) => {
     const previousWidth = previousWidths.get(entry.target) || 0
     return entry.contentRect.width > previousWidth
