@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable no-console */
 import type { ValueOf } from 'type-fest'
+import { debounce } from '~/utils/debounce'
 
 // TODO: start 和 end 的区别，是当需要隐藏元素式，从哪边删除
 // minVisibleItems 是当删除时，判断是否到了最小可见元素数量
@@ -93,7 +94,6 @@ function handleRepartition(growing: boolean) {
 }
 
 const onResize = (entries: ResizeObserverEntry[]) => {
-  // TODO: 需要防抖
   const growing = entries.some((entry) => {
     const previousWidth = previousWidths.get(entry.target) || 0
     return entry.contentRect.width > previousWidth
@@ -104,7 +104,7 @@ const onResize = (entries: ResizeObserverEntry[]) => {
 
 const init = () => {
   // 需要到 list 容器的 resize 做监控，当有变化时，需要重新初始化
-  const io = new ResizeObserver(onResize)
+  const io = new ResizeObserver(debounce(onResize))
 
   if (listRef.value)
     io.observe(listRef.value)
