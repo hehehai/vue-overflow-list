@@ -137,8 +137,9 @@ onMounted(() => {
 <template>
   <div ref="listRef" class="overflow-list-wrapper">
     <div v-for="item in upState.visible" ref="itemRefs" :key="item" class="list-item">
-      <div :class="`i-carbon-${item}`" />
-      <span>{{ item }}</span>
+      <slot name="item" :item="item">
+        {{ item }}
+      </slot>
     </div>
     <div class="end">
       +{{ upState.overflow?.length }}

@@ -24,10 +24,19 @@ const collapseSizeWidth = computed(() => `${collapseSize.value}px`)
     </div>
   </div>
   <div class="box collapse-wrapper mt-5">
-    <CollapseList :items="items" />
+    <CollapseList :items="items">
+      <template #item="{ item }">
+        <div :class="`i-carbon-${item}`" />
+        <span>{{ item }}</span>
+      </template>
+    </CollapseList>
   </div>
   <div class="box collapse-wrapper mt-5">
-    <CollapseList :items="bigItems" />
+    <CollapseList :items="bigItems">
+      <template #item="{ item }">
+        <span>{{ item }}</span>
+      </template>
+    </CollapseList>
   </div>
 </template>
 
